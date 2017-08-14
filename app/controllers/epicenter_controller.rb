@@ -9,6 +9,17 @@ class EpicenterController < ApplicationController
         @following_tweets.push(tweet)
       end
     end
+
+    users_array = []
+
+    User.all.each do |user|
+      if current_user.following.include?(user.id)
+        users_array.push(user)
+      end
+    end
+
+    @num_following = users_array.count
+
   end
 
   def tag_tweets
